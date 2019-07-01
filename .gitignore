@@ -102,3 +102,10 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# IDE
+.idea/
+.vscode/
+.DS_Store
+
+# User Definition
