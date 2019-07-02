@@ -1,7 +1,7 @@
 # coding: utf-8
 # create by tongshiwei on 2019/7/1
-import random
 import os
+import random
 
 import networkx as nx
 
@@ -86,25 +86,6 @@ class Graph(object):
 
     def successors(self, idx):
         return list(self.graph.successors(idx))
-
-    def parents(self, idx):
-        return list(self.predecessors(idx))
-
-    def grandparents(self, idx):
-        gp = []
-
-        for node in self.parents(idx):
-            gp += self.predecessors(node)
-
-        return gp
-
-    def parents_siblings(self, idx):
-        ps = []
-
-        for node in self.grandparents(idx):
-            ps += self.graph.successors(node)
-
-        return ps
 
     def initial_connected_graph(self):
         for node in self.graph.nodes:
