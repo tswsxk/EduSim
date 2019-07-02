@@ -1,14 +1,33 @@
 # coding: utf-8
 # create by tongshiwei on 2019/6/26
 
+import json
+
 import gym
+from tqdm import tqdm
 
 from EduSim import RandomAgent, Graph
 
 
-def test_env():
+def test_env(tmp_path):
     environment = gym.make("EduSim:KSS-v0")
     environment.render()
+
+    exercises_record_for_kt_file = str(tmp_path / "kss-kt.json")
+    environment.dump_kt(4000, exercises_record_for_kt_file, 50)
+
+    with open(exercises_record_for_kt_file) as f:
+        for line in tqdm(f):
+            data = json.loads(line)
+            assert len(data) <= 50
+            for d in data:
+                assert len(d) == 2
+
+    students = environment.generate_students(4000, 20)
+    for exercises_record in [student[1] for student in students]:
+        assert len(exercises_record) <= 20
+        for exercise_record in exercises_record:
+            assert len(exercise_record) == 2
 
 
 def test_interaction():
@@ -46,3 +65,4 @@ def test_eval():
     environment = gym.make("EduSim:KSS-v0")
     agent = RandomAgent(Graph("KSS"))
     print(environment.eval(agent, max_steps=20))
+    assert True
