@@ -13,7 +13,7 @@ from longling import flush_print
 from longling.lib.candylib import as_list
 
 
-def get_reward(dataset=None, agent_kind=None):
+def get_reward():
     return GreedyExpReward()
 
 
