@@ -3,6 +3,7 @@
 
 from gym.envs.registration import register
 from .Agent import *
+from .envs import *
 
 register(
     id='KSS-v0',
