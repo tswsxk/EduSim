@@ -6,7 +6,7 @@ import json
 import gym
 from tqdm import tqdm
 
-from EduSim import RandomAgent, Graph
+from EduSim import RandomAgent, Graph, get_reward
 
 
 def test_env(tmp_path):
@@ -34,6 +34,7 @@ def test_interaction():
     step_num = 20
     episode_num = 40
     scores = []
+    reward_func = get_reward()
 
     environment = gym.make("EduSim:KSS-v0")
     agent = RandomAgent(Graph("KSS"))
@@ -55,8 +56,10 @@ def test_interaction():
 
         final_score = environment.test_score(target)
         environment.end_episode()
+        rec_path = agent.end_episode()
 
-        scores.append((final_score - initial_score) / len(target))
+        rewards = reward_func(initial_score, final_score, len(target), rec_path)
+        scores.append(rewards[-1])
 
     print(sum(scores) / episode_num)
 
@@ -65,4 +68,3 @@ def test_eval():
     environment = gym.make("EduSim:KSS-v0")
     agent = RandomAgent(Graph("KSS"))
     print(environment.eval(agent, max_steps=20))
-    assert True
