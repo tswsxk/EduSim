@@ -143,7 +143,9 @@ class RandomAgent(Agent):
         return random.choice(self.graph()[0]), None
 
     def end_episode(self, *args, **kwargs):
+        rec_path = self.path
         self.path = None
+        return rec_path
 
     def state_transform(self, action, correct, *args, **kwargs):
         self.path.append(action)
