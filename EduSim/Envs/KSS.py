@@ -8,7 +8,7 @@ import networkx as nx
 from longling import wf_open
 from tqdm import tqdm
 
-from EduSim.envs.Env import Env, influence_control, get_reward
+from EduSim.Envs.Env import Env, influence_control, get_reward
 
 graph_edges = [
     (0, 1),
