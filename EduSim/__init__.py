@@ -3,9 +3,9 @@
 
 from gym.envs.registration import register
 from .Agent import *
-from .envs import *
+from .Envs import *
 
 register(
     id='KSS-v0',
-    entry_point='EduSim.envs:KSS',
+    entry_point='EduSim.Envs:KSS',
 )
