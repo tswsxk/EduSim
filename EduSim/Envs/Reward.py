@@ -1,6 +1,9 @@
 # coding: utf-8
 # 2019/11/25 @ tongshiwei
 
+
+"""generate reward based on the performance of learners/students"""
+
 import numpy as np
 
 
