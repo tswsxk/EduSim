@@ -8,7 +8,7 @@ def test_tester(tester, learner):
     tester.begin_episode(learner)
     assert isinstance(tester.test(5), int)
     assert isinstance(tester.exam(), int)
-    result = tester.end_episode([], reset=False)
+    result = tester.summary_episode([])
 
     for key in return_key_tester:
         assert key in result
