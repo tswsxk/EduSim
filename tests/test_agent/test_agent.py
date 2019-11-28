@@ -13,6 +13,6 @@ def test_agent(random_agent, learner):
     learning_item = agent.step()
     assert isinstance(learning_item, int)
     agent.n_step(10)
-    agent.episode_reward()
+    agent.episode_reward(10)
     assert set(return_key_agent_summary_episode) == set(agent.end_episode())
     agent.tune()
