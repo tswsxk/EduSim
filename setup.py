@@ -23,7 +23,7 @@ setup(
                 'provide some offline simulators for training and testing recommender systems of education.',
     install_requires=[
         'gym',
-        'longling>=1.0.0',
+        'longling>=1.3.0',
         'tqdm',
         'networkx',
         'numpy'
