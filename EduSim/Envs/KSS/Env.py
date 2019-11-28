@@ -19,8 +19,8 @@ ORDER_RATIO = 1
 
 
 class KSS(Env):
-    def __init__(self, learner_num=4000, seed=10, **kwargs):
-        super(KSS, self).__init__(**kwargs)
+    def __init__(self, learner_num=4000, seed=10, logger=None, log_rf=None, **kwargs):
+        super(KSS, self).__init__(logger=logger, log_rf=log_rf, **kwargs)
 
         random.seed(seed)
 
