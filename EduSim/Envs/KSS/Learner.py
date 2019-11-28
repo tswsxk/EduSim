@@ -6,7 +6,7 @@ import math
 
 import networkx as nx
 from EduSim.Envs.Learner import Learner as BaseLearner
-from EduSim.Envs.Env import influence_control
+from EduSim.Envs.KS import influence_control
 
 __all__ = ["Learner"]
 
