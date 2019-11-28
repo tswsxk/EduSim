@@ -1,10 +1,23 @@
 # coding: utf-8
 # 2019/11/27 @ tongshiwei
 
+from EduSim.Envs.KSS import KSS
 from tqdm import tqdm
 import json
 from longling import path_append
 from EduSim.Envs.base import return_key_env_step, return_key_env_summary_episode
+
+
+def test_api(tmp_path):
+    _env = KSS(learner_num=1, log_rf=path_append(tmp_path, "kss_rf.json", to_str=True))
+    _env.remove_invalid_sample(0)
+    try:
+        with _env.episode():
+            pass
+    except ValueError:
+        pass
+
+    assert True
 
 
 def test_offline_data(env, tmp_path):
