@@ -1,5 +1,5 @@
 # EduSim
-[![PyPI](https://img.shields.io/pypi/v/EduData.svg)](https://pypi.python.org/pypi/EduData)
+[![PyPI](https://img.shields.io/pypi/v/EduSim)](https://pypi.python.org/pypi/EduSim)
 [![Build Status](https://www.travis-ci.org/tswsxk/EduSim.svg?branch=master)](https://www.travis-ci.org/tswsxk/EduSim)
 [![Coverage Status](https://coveralls.io/repos/github/tswsxk/EduSim/badge.svg?branch=master)](https://coveralls.io/github/tswsxk/EduSim?branch=master)
 
@@ -8,7 +8,10 @@ The collection of simulators for education. If you are using this package for yo
 Refer to our [website](http://base.ustc.edu.cn/) and [github](https://github.com/bigdata-ustc) for our publications and more projects
 
 ## Installation
-or
+```bash
+pip install EduSim
+```
+or git clone and
 ```bash
 pip install -e .--user
 ```
@@ -16,6 +19,8 @@ pip install -e .--user
 ## List of Environment
 
 * KSS: Knowledge Structure based Simulator, which is used in [1] 
+
+To construct your own environment, refer to [Env.md](docs/Env.md)
 
 ## Reference
 [1] Qi Liu, Shiwei Tong, Chuanren Liu, Hongke Zhao, Enhong Chen, HaipingMa,&ShijinWang.2019.ExploitingCognitiveStructureforAdaptive Learning.InThe 25th ACM SIGKDD Conference on Knowledge Discovery & Data Mining (KDD’19)
