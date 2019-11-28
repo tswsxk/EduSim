@@ -17,24 +17,8 @@ class KS(nx.DiGraph):
 
 
 def bfs(graph, mastery, pnode, hop, candidates, soft_candidates, visit_nodes=None, visit_threshold=1,
-        allow_shortcut=True):
-    """
+        allow_shortcut=True):  # pragma: no cover
 
-    Parameters
-    ----------
-    graph: nx.Digraph
-    mastery
-    pnode
-    hop
-    candidates: set()
-    soft_candidates: set()
-    visit_nodes
-    visit_threshold
-
-    Returns
-    -------
-
-    """
     assert hop >= 0
     if visit_nodes and visit_nodes.get(pnode, 0) >= visit_threshold:
         return
@@ -73,7 +57,8 @@ def bfs(graph, mastery, pnode, hop, candidates, soft_candidates, visit_nodes=Non
 
 
 def influence_control(graph, mastery, pnode, visit_nodes=None, visit_threshold=1, allow_shortcut=True, no_pre=None,
-                      connected_graph=None, target=None, legal_candidates=None, path_table=None):
+                      connected_graph=None, target=None, legal_candidates=None,
+                      path_table=None) -> tuple:  # pragma: no cover
     """
 
     Parameters
