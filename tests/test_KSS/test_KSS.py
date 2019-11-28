@@ -57,4 +57,5 @@ def test_env(env):
 def test_interaction(env, agents):
     env.train(agents["random_agent"], max_steps=20, max_episode_num=5)
     env.eval(agents["random_agent"], max_steps=20, max_episode_num=5)
+    env.eval(agents["random_agent"], max_steps=20, max_episode_num=5, n_step=True)
     assert True
