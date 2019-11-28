@@ -7,7 +7,7 @@ from EduSim.Envs.KSS import KSS
 
 @pytest.fixture(scope="module")
 def env():
-    return KSS(learner_num=5)
+    return KSS(learner_num=50)
 
 
 @pytest.fixture(scope="module")
