@@ -45,8 +45,7 @@ class Env(gym.Env):
         print(self._learner)
 
     def reset(self):
-        self.end_episode()
-        self.begin_episode()
+        self._reset_episode()
 
     def learn(self, learning_item):
         self._learner.learn(learning_item)
@@ -92,7 +91,6 @@ class Env(gym.Env):
 
     def begin_episode(self, *args, **kwargs) -> Learner:
         """invoked at the most beginning of an episode (initialize state)"""
-        self._path = []
         raise NotImplementedError
 
     def _reset_episode(self, *args, **kwargs):
@@ -104,7 +102,7 @@ class Env(gym.Env):
         _path = self._path
 
         summary = {
-            "learner_id": _learner.id,
+            "learner_id": None,
             "path": _path,
             "reward": None,
             "evaluation": None
@@ -153,7 +151,7 @@ def train_eval(agent, env, max_steps, max_episode_num=None, n_step=False, train=
         try:
             agent.begin_episode(env.begin_episode())
             episode += 1
-        except StopIteration:
+        except ValueError:  # pragma: no cover
             break
 
         # recommend and learn
@@ -166,7 +164,7 @@ def train_eval(agent, env, max_steps, max_episode_num=None, n_step=False, train=
             for _ in range(max_steps):
                 try:
                     learning_item = agent.step()
-                except StopIteration:
+                except ValueError:  # pragma: no cover
                     break
                 interaction = env.step(learning_item)
                 agent.observe(**interaction["performance"])
