@@ -11,6 +11,6 @@ def kss_graph():
     return Graph("KSS")
 
 
-@pytest.fixture(scope="package")
+@pytest.fixture(scope="module")
 def random_agent(kss_graph):
     return RandomGraphAgent(kss_graph)
