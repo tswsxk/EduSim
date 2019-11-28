@@ -29,6 +29,7 @@ class Agent(object):
     def path(self) -> list:
         return self._path
 
+    @contextlib.contextmanager
     def episode(self, learner: Learner, *args, **kwargs):
         yield self.begin_episode(learner, *args, **kwargs)
         self.end_episode(*args, **kwargs)
@@ -53,9 +54,31 @@ class Agent(object):
         """recommend/generate n learning items"""
         return [key(self.step(*args, **kwargs)) for _ in range(n)]
 
-    def end_episode(self, *args, **kwargs) -> None:
+    def _reset_episode(self):
+        self._path = None
+        self._interactions = None
+        self._learner = None
+        self._learner_learning_history = None
+        self._learner_exercise_history = None
+        self._episode_reward = None
+
+    def summary_episode(self) -> dict:
+        episode_summary = {
+            "learner_id": self._learner.id,
+            "learning_history": self._learner_learning_history,
+            "exercise_history": self._learner_exercise_history,
+            "path": self._path,
+            "interactions": self._interactions,
+            "episode_reward": self._episode_reward
+        }
+        self._logger.info(episode_summary)
+        return episode_summary
+
+    def end_episode(self, *args, **kwargs) -> dict:
         """invoked at the end of an episode (clear buffer, trigger tuning or training)"""
-        raise NotImplementedError
+        episode_summary = self.summary_episode()
+        self._reset_episode()
+        return episode_summary
 
     def tune(self, *args, **kwargs) -> None:
         """api for training: update parameters"""
@@ -86,26 +109,6 @@ class RandomGraphAgent(GraphAgent):
     def step(self, *args, **kwargs) -> int:
         self._path.append(random.choice(self.graph()[0]))
         return self._path[-1]
-
-    def end_episode(self, *args, **kwargs):
-        episode_summary = {
-            "learner_id": self._learner.id,
-            "learning_history": self._learner_learning_history,
-            "exercise_history": self._learner_exercise_history,
-            "path": self._path,
-            "interactions": self._interactions,
-            "episode_reward": self._episode_reward
-        }
-        self._logger.info(episode_summary)
-
-        self._path = None
-        self._interactions = None
-        self._learner = None
-        self._learner_learning_history = None
-        self._learner_exercise_history = None
-        self._episode_reward = None
-
-        return episode_summary
 
     def observe(self, exercise, correct, *args, **kwargs) -> None:
         self._interactions.append([exercise, correct])
