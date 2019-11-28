@@ -51,14 +51,14 @@ class KSS(Env):
             try:
                 _idx = random.randint(0, len(self.learners) - 1)
             except ValueError:
-                raise StopIteration
+                raise ValueError
 
             self._learner = self.learners[_idx]
             self.tester.begin_episode(self._learner)
             if self.is_valid_sample(self._learner):
                 self._path = []
                 return self._learner
-            else:
+            else:  # pragma: no cover
                 self.tester.end_episode()
                 self.remove_invalid_sample(_idx)
 
@@ -114,7 +114,7 @@ class KSS(Env):
         return [[random.randint(-3, 0) - (0.1 * i) for i in range(10)] for _ in range(learner_num)]
 
     # #################### capacity growth #########################
-    def _learner_warm_up(self, learner: Learner, step):
+    def _learner_warm_up(self, learner: Learner, step):  # pragma: no cover
         self.tester.begin_episode(learner)
         self._learner = learner
         if random.random() < ORDER_RATIO:
