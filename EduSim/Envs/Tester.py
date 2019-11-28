@@ -19,7 +19,17 @@ class Tester(object):
         self._learner = learner
         self._initial_score = self.exam()
 
-    def end_episode(self, path=None, reset=True) -> dict:
+    def end_episode(self, path=None) -> dict:
+        result = self.summary_episode(path)
+        self._reset_episode()
+        return result
+
+    def _reset_episode(self):
+        self._initial_score = None
+        self._final_score = None
+        self._learner = None
+
+    def summary_episode(self, path):
         self._final_score = self.exam()
 
         result = {
@@ -31,11 +41,6 @@ class Tester(object):
         }
 
         self._logger.info(result)
-
-        if reset:
-            self._initial_score = None
-            self._final_score = None
-            self._learner = None
 
         return result
 
