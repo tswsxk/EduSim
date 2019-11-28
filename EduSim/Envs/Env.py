@@ -6,15 +6,13 @@ import contextlib
 
 import gym
 
-from longling import clock
-from longling import flush_print
-from longling import config_logging, wf_open
+from longling import config_logging
 
 try:
     from .Reward import get_reward
     from .Learner import Learner
     from .Tester import Tester
-except (SystemError, ModuleNotFoundError):
+except (SystemError, ModuleNotFoundError):  # pragma: no cover
     from Reward import get_reward
     from Learner import Learner
     from Tester import Tester
