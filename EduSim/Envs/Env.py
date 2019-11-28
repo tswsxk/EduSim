@@ -88,7 +88,8 @@ class Env(gym.Env):
 
     @contextlib.contextmanager
     def episode(self, *args, **kwargs):
-        yield self.begin_episode(*args, **kwargs)
+        learner = self.begin_episode(*args, **kwargs)
+        yield learner
         self._reset_episode()
 
     def begin_episode(self, *args, **kwargs) -> Learner:
