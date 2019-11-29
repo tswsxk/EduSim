@@ -2,8 +2,7 @@
 # 2019/11/27 @ tongshiwei
 
 import pytest
-from EduSim.Agent.utils import Graph
-from EduSim.Agent.agent import RandomGraphAgent
+from EduSim import Graph, RandomGraphAgent
 
 
 @pytest.fixture(scope="module")
