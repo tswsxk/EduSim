@@ -75,7 +75,7 @@ We currently provide the following environments:
 
 Name | Kind | Notation
 -|-|-
-[KSS](docs/Env.md) | PBS | Knowledge Structure based Simulator, which is used in [1]
+[KSS-v0](docs/Env.md) | PBS | Knowledge Structure based Simulator (KSS), which is used in [1]
 
 To construct your own environment, refer to [Env.md](docs/Env.md)
 
