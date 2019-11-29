@@ -3,7 +3,12 @@
 [![Build Status](https://www.travis-ci.org/tswsxk/EduSim.svg?branch=master)](https://www.travis-ci.org/tswsxk/EduSim)
 [![Coverage Status](https://coveralls.io/repos/github/tswsxk/EduSim/badge.svg?branch=master)](https://coveralls.io/github/tswsxk/EduSim?branch=master)
 
-The collection of simulators for education. If you are using this package for your research, please cite our paper [1].
+EduSim is a platform for constructing simulation environments for recommender systems (RSs) 
+that naturally supports sequential interaction with learners. 
+Meanwhile, EduSim allows the creation of new environments that reflect particular aspects of learning elements, 
+such as learning behavior of learners, knowledge structure of concepts and so on.
+
+If you are using this package for your research, please cite our paper [1].
 
 Refer to our [website](http://base.ustc.edu.cn/) and [github](https://github.com/bigdata-ustc) for our publications and more projects
 
@@ -11,14 +16,66 @@ Refer to our [website](http://base.ustc.edu.cn/) and [github](https://github.com
 ```bash
 pip install EduSim
 ```
-or git clone and
-```bash
-pip install -e .--user
+
+## Quick Start
+```python
+import gym 
+from EduSim import Graph, RandomGraphAgent
+
+env = gym.make('KSS-v0', learner_num=4000)
+agent = RandomGraphAgent(Graph("KSS"))
+max_episode_num = 1000
+n_step = False
+max_steps = 20
+train = True
+
+episode = 0
+
+while True:
+    if max_episode_num is not None and episode > max_episode_num:
+        break
+
+    try:
+        agent.begin_episode(env.begin_episode())
+        episode += 1
+    except ValueError:  # pragma: no cover
+        break
+
+    # recommend and learn
+    if n_step is True:
+        # generate a learning path
+        learning_path = agent.n_step(max_steps)
+        env.n_step(learning_path)
+    else:
+        # generate a learning path step by step
+        for _ in range(max_steps):
+            try:
+                learning_item = agent.step()
+            except ValueError:  # pragma: no cover
+                break
+            interaction = env.step(learning_item)
+            agent.observe(**interaction["performance"])
+
+    # test the learner to see the learning effectiveness
+    agent.episode_reward(env.end_episode()["reward"])
+    agent.end_episode()
+
+    if train is True:
+        agent.tune()
 ```
 
 ## List of Environment
 
-* KSS: Knowledge Structure based Simulator, which is used in [1] 
+There are three kinds of Environments, which differs in learner capacity growth model:
+* Pattern Based Simulators (PBS): the capacity growth model is designed by human experts;
+* Data Driven Simulators (DDS): the capacity growth model is learned from real data;
+* Hybrid Simulators (HS): the capacity growth model is learned from real data with some expert rule limitation;
+
+We currently provide the following environments:
+
+Name | Kind | Notation
+-|-|-
+[KSS](docs/Env.md) | PBS | Knowledge Structure based Simulator, which is used in [1]
 
 To construct your own environment, refer to [Env.md](docs/Env.md)
 
