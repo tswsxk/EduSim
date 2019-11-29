@@ -3,7 +3,7 @@
 [![Build Status](https://www.travis-ci.org/tswsxk/EduSim.svg?branch=master)](https://www.travis-ci.org/tswsxk/EduSim)
 [![Coverage Status](https://coveralls.io/repos/github/tswsxk/EduSim/badge.svg?branch=master)](https://coveralls.io/github/tswsxk/EduSim?branch=master)
 
-EduSim is a platform for constructing simulation environments for recommender systems (RSs) 
+EduSim is a platform for constructing simulation environments for education recommender systems (ERSs) 
 that naturally supports sequential interaction with learners. 
 Meanwhile, EduSim allows the creation of new environments that reflect particular aspects of learning elements, 
 such as learning behavior of learners, knowledge structure of concepts and so on.
