@@ -1,8 +1,7 @@
 # EduSim
 [![PyPI](https://img.shields.io/pypi/v/EduSim)](https://pypi.python.org/pypi/EduSim)
 [![Build Status](https://www.travis-ci.org/tswsxk/EduSim.svg?branch=master)](https://www.travis-ci.org/tswsxk/EduSim)
-[![Coverage Status](https://coveralls.io/repos/github/tswsxk/EduSim/badge.svg?branch=master)](https://coveralls.io/github/tswsxk/EduSim?branch=master)
-[![Coverage Status](https://codecov.io/gh/codecov/EduSim/branch/master/graph/badge.svg)](https://codecov.io/gh/codecov/EduSim)
+[![codecov](https://codecov.io/gh/tswsxk/EduSim/branch/master/graph/badge.svg)](https://codecov.io/gh/tswsxk/EduSim)
 
 EduSim is a platform for constructing simulation environments for education recommender systems (ERSs) 
 that naturally supports sequential interaction with learners. 
