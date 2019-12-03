@@ -11,7 +11,9 @@ matrix:
 install:
   - pip install -e .[test]
   - pip install coveralls
+  - pip install coverage
 
 script:
   - pytest
   - COVERALLS_PARALLEL=true coveralls
+  - codecov
