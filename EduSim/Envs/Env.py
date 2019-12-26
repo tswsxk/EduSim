@@ -7,6 +7,7 @@ import contextlib
 import gym
 
 from longling import config_logging
+from longling.lib.structure import AttrDict
 
 try:
     from .Reward import get_reward
@@ -46,6 +47,7 @@ class Env(gym.Env):
 
     def reset(self):
         self._reset_episode()
+        return self.begin_episode()
 
     def learn(self, learning_item):
         self._learner.learn(learning_item)
@@ -66,16 +68,16 @@ class Env(gym.Env):
         """
         raise NotImplementedError
 
-    def step(self, learning_item, exercise=None, *args, **kwargs) -> dict:
+    def step(self, learning_item, exercise=None, *args, **kwargs) -> [object, float, bool, dict]:
         """simulate a learner learn and test on a certain learning item and exercise"""
         self._path.append(learning_item)
         self.learn(learning_item)
         exercise = learning_item if exercise is None else exercise
         performance = self.test(exercise)
-        return {
+        return AttrDict({
             "performance": performance,
             "reward": self.step_reward()
-        }
+        }), 0., False, {}
 
     def n_step(self, learning_items, exercises=None, *args, **kwargs):
         """n step learning and testing simulation"""
@@ -166,7 +168,7 @@ def train_eval(agent, env, max_steps, max_episode_num=None, n_step=False, train=
                     learning_item = agent.step()
                 except ValueError:  # pragma: no cover
                     break
-                interaction = env.step(learning_item)
+                interaction, _, _, _ = env.step(learning_item)
                 agent.observe(**interaction["performance"])
 
         # test the learner to see the learning effectiveness

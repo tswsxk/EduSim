@@ -46,7 +46,7 @@ def test_offline_data(env, tmp_path):
 def test_env(env):
     with env.episode():
         for learning_item in env.ks.nodes:
-            t = env.step(learning_item)
+            t, _, _, _ = env.step(learning_item)
             for key in return_key_env_step:
                 assert key in t
             assert {"exercise", "correct"} == set(env.test(learning_item))

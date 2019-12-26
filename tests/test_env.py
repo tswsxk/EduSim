@@ -1,6 +1,7 @@
 # coding: utf-8
 # 2019/11/28 @ tongshiwei
 
+import pytest
 from longling import config_logging, path_append
 
 from EduSim.Envs import Env
@@ -15,7 +16,9 @@ def test_env(tmp_path):
     _env = Env(log_rf=config_logging(logger="test_env"))
 
     _env.render()
-    _env.reset()
+
+    with pytest.raises(NotImplementedError):
+        _env.reset()
     assert set(_env.summary_episode()) == set(return_key_env_summary_episode)
 
     assert True

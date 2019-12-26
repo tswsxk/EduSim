@@ -53,7 +53,7 @@ while True:
                 learning_item = agent.step()
             except ValueError:  # pragma: no cover
                 break
-            interaction = env.step(learning_item)
+            interaction, _ ,_, _ = env.step(learning_item)
             agent.observe(**interaction["performance"])
 
     # test the learner to see the learning effectiveness
