@@ -75,9 +75,23 @@ We currently provide the following environments:
 
 Name | Kind | Notation
 -|-|-
-[KSS-v0](docs/Env.md) | PBS | Knowledge Structure based Simulator (KSS), which is used in [1]
+[TMS-v0](docs/Env.md) | PBS | Transition Matrix based Simulator (TMS), which is used in [2,3,4]
+[MBS-v0](docs/Env.md) | PBS | Memory Based Simulator (MBS), which is used in [5]
+[KSS-v1](docs/Env.md) | PBS | Knowledge Structure based Simulator (KSS), which is used in [1]
 
 To construct your own environment, refer to [Env.md](docs/Env.md)
+
+**Declaration: if you are using ``TMS`` and ``MBS``, referring to the citations is suggested. **
+
+## utils
+
+### Visualization
+
+By default, we use ``tensorboard`` to help visualize the reward of each episode, see demos in ``scripts`` and use
+```sh
+tensorboard --logdir /path/to/logs
+```
+to see the visualization result.
 
 ## Reference
 [1] Qi Liu, Shiwei Tong, Chuanren Liu, Hongke Zhao, Enhong Chen, HaipingMa,&ShijinWang.2019.ExploitingCognitiveStructureforAdaptive Learning.InThe 25th ACM SIGKDD Conference on Knowledge Discovery & Data Mining (KDD’19)

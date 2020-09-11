@@ -1,7 +1,7 @@
 # coding: utf-8
-# 2019/11/26 @ tongshiwei
+# 2020/5/8 @ tongshiwei
 
-from EduSim.Envs.KS import KS as BaseKS
+from EduSim.Envs.shared.KSS_KES import KS
 
 graph_edges = [
     (0, 1),
@@ -17,10 +17,6 @@ graph_edges = [
     (7, 8),
     (8, 9),
 ]
-
-
-class KS(BaseKS):
-    pass
 
 
 def get_knowledge_structure():

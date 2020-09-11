@@ -1,6 +1,5 @@
 # coding: utf-8
-# 2019/11/26 @ tongshiwei
+# 2020/4/29 @ tongshiwei
 
-from .Env import KSS
-from .QBank import QBank
-from .Tester import Tester
+from .Env import KSSEnv, kss_train_eval
+from .Agent import KSSAgent

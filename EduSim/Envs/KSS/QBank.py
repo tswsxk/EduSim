@@ -12,5 +12,5 @@ class QBank(object):
             difficulty[j] = _difficulty[index]
         self.difficulty = difficulty
 
-    def get_difficulty(self, exercise):
-        return self.difficulty[exercise]
+    def __getitem__(self, item):
+        return self.difficulty[item]

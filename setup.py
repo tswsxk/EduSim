@@ -6,7 +6,7 @@ from setuptools import setup, find_packages
 test_deps = [
     'pytest>=4',
     'pytest-cov>=2.6.0',
-    'pytest-pep8>=1',
+    'pytest-flake',
 ]
 
 setup(
@@ -23,9 +23,11 @@ setup(
                 'provide some offline simulators for training and testing recommender systems of education.',
     install_requires=[
         'gym',
-        'longling>=1.3.0',
+        'longling>=1.3.12',
         'tqdm',
         'networkx',
-        'numpy'
+        'numpy',
+        'tensorboardX',
+        'tensorboard',
     ]  # And any other dependencies foo needs
 )
